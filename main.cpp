@@ -26,10 +26,6 @@ int main()
 
     srand(time(0));
 
-
-/*x for x spectrum, y for y spectrum, delay for sleeping the program for a specific amount of seconds, aliveCells for counting alive cells in
-a generation, peakAliveCell for knowing the max amount of alive cells and peakGeneration for knowing which generation peaked in terms of alive cell count
-*/
     int question;
     cout<<"if you want to know what game of life is about, type 420. if not, type any other number"<<endl;
     cin>>question;
@@ -38,7 +34,7 @@ a generation, peakAliveCell for knowing the max amount of alive cells and peakGe
         cout<<"Suprise! Game of life isn't actually a game, it's a cellular automata program written by John Conway in 1970"<<endl;
         cout<<"It has a grid with infinite length (but in my program user decide how big it is) with alive or dead cells."<<endl;
         cout<<"These cells are determined dead or alive in next generation judged by 3 rules:"<<endl<<endl;
-        cout<<"If an alive cell has 2 or 3 alive neigbours, it is still alive in the next generation."<<endl;
+        cout<<"If an alive cell has 2 or 3 alive neighbours, it is still alive in the next generation."<<endl;
         cout<<"If a dead cell has 3 alive neighbours, it is born in next generation"<<endl;
         cout<<"Every other cells are DEAD in next generation."<<endl;
         cout<<"User decides the first generation composition and program runs until (I added this feature):"<<endl;
@@ -66,13 +62,17 @@ a generation, peakAliveCell for knowing the max amount of alive cells and peakGe
             cout<<"Fun fact: John Conway said that he used to hate his creation, because he thought it was overrated and overshadowed his other work because"<<endl;
             cout<<"when the name John Conway was the talk topic, everyone knew just about his game of life not a single thing about his math career which annoyed him"<<endl<<endl;
 
-            cout<<"If you are done with reading, type any number"<<endl;
+            cout<<"If you are done with reading, type any number other than 1350"<<endl;
             cin>>done;
 
         }
     }
 
+/*x for x spectrum, y for y spectrum, delay for sleeping the program for a specific amount of seconds, aliveCells for counting alive cells in
+a generation, peakAliveCell for knowing the max amount of alive cells and peakGeneration for knowing which generation peaked in terms of alive cell count
+*/
     int x,y,g,delay,aliveCells,stableCounter,peakAliveCell,peakGeneration;
+
 
     //for using color, nothing really special again
     HANDLE h=GetStdHandle(STD_OUTPUT_HANDLE);
@@ -102,17 +102,27 @@ a generation, peakAliveCell for knowing the max amount of alive cells and peakGe
     cin>>delay;
 
 
-    cout<<"If you want a random generated first generation, type 1488. If you want to manually choose alive cells, type any other number"<<endl<<endl;
+    cout<<"If you want a random generated first generation, type 1488. If you want to manually choose alive cells, type any other number"<<endl;
+    cout<<"or if you want to start the calculator mode, type 109"<<endl<<endl;
+
     int question3;
     cin>>question3;
     cout<<"\n";
+    bool randomFirstGeneration;
+    bool calculatorMode;
+
     if(question3==1488)
     {
-        goto randomFirstGeneration;
+        randomFirstGeneration = true;
+    }
+    if (question3==109)
+    {
+        calculatorMode = true;
     }
 
 
 //mark dead
+
     for(int i=0; x>=i; i++)
     {
 
@@ -125,63 +135,53 @@ a generation, peakAliveCell for knowing the max amount of alive cells and peakGe
         }
 
     }
-    cout<<"select the cells that you want alive in the first generation, all the others will be counted as dead"<<endl<<endl;
+    cout<<"select the cells that you want alive in the first generation, all the others will be counted as dead"<<endl;
 
-    while(true)
-    {
-        SetConsoleTextAttribute(h,11);
-        int a,b;
-        cout<<"type -420 on x value if you are done with marking the alive cells"<<endl;
-        cout<<"type x coordinate of alive cell"<<endl;
-        cin>>a;
-        if(a==-420)
-        {
-            break;
-        }
-        cout<<"type y coordinate of alive cell"<<endl;
-        cin>>b;
-        if(a>x || b>x || a<0 || b<0)
-        {
-            SetConsoleTextAttribute(h,4);
-            cout<<"your grid doesn't have these coordinates, try again and with caution this time please!"<<endl;
-            continue;
-        }
-        cout<<"x"<<a<<",y"<<b<<" will be alive in first generation"<<endl;
-        gridArray[a][b][g] = 1;
-
-        cout<<"\n";
-
-    }
-    if(question3!=1488)
-    {
-        goto manualFirstGeneration;
-    }
-
-    randomFirstGeneration:
-
-
-    for(int i=0; x>=i; i++)
-    {
-
-        for(int k=0; y>=k; k++)
-        {
-
-            if(rand()%2==0)
-            {
-                gridArray[k][i][g]=0;
+    if(randomFirstGeneration == false) {
+        while (true) {
+            SetConsoleTextAttribute(h, 11);
+            int a, b;
+            cout << "type -420 on x value if you are done with marking the alive cells" << endl;
+            cout << "type x coordinate of alive cell" << endl;
+            cin >> a;
+            if (a == -420) {
+                break;
             }
-            else
-            {
-                gridArray[k][i][g]=1;
+            cout << "type y coordinate of alive cell" << endl;
+            cin >> b;
+            if (a > x || b > x || a < 0 || b < 0) {
+                SetConsoleTextAttribute(h, 4);
+                cout << "your grid doesn't have these coordinates, try again and with caution this time please!"
+                     << endl;
+                continue;
+            }
+            cout << "x" << a << ",y" << b << " will be alive in first generation" << endl;
+            gridArray[a][b][g] = 1;
+
+            cout << "\n";
+
+        }
+    }
+
+
+
+
+if(randomFirstGeneration == true) {
+    for (int i = 0; x >= i; i++) {
+
+        for (int k = 0; y >= k; k++) {
+
+            if (rand() % 2 == 0) {
+                gridArray[k][i][g] = 0;
+            } else {
+                gridArray[k][i][g] = 1;
             }
 
 
-
         }
 
     }
-
-    manualFirstGeneration:
+}
 
 
 //write the first generation
