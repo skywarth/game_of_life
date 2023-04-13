@@ -227,21 +227,16 @@ a generation, peakAliveCell for knowing the max amount of alive cells and peakGe
 
                 //every if statement has at least one safety precaution (like k!0=0 or i+1<=y) so that program doesn't look for an array value that doesn't exist.
                 //one more important thing is that we need to put the safety precaution first inside the statement
-                if(
-                        (k!=0 && gridArray[k-1][i][g]==1) ||
-                        (k+1<=x && gridArray[k+1][i][g]==1) ||
-                        (i+1<=y && gridArray[k][i+1][g]==1) ||
-                        (i!=0 && gridArray[k][i-1][g]==1) ||
-                        (i+1<=y && k!=0 && gridArray[k-1][i+1][g]==1) ||
-                        (k!=0 && i!=0 && gridArray[k-1][i-1][g]==1) ||
-                        (k+1<=x && i!=0 && gridArray[k+1][i-1][g]==1) ||
-                        (k+1<=x && i+1<=y && gridArray[k+1][i+1][g]==1)
-                )
-                {
+               neiCounter=
+                       (k!=0 && gridArray[k-1][i][g]==1) +
+                       (k+1<=x && gridArray[k+1][i][g]==1) +
+                       (i+1<=y && gridArray[k][i+1][g]==1) +
+                       (i!=0 && gridArray[k][i-1][g]==1) +
+                       (i+1<=y && k!=0 && gridArray[k-1][i+1][g]==1) +
+                       (k!=0 && i!=0 && gridArray[k-1][i-1][g]==1) +
+                       (k+1<=x && i!=0 && gridArray[k+1][i-1][g]==1) +
+                       (k+1<=x && i+1<=y && gridArray[k+1][i+1][g]==1);
 
-                    neiCounter++;
-
-                }
 
 
                 //lets judge if he is alive or not
