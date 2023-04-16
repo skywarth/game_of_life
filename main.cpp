@@ -10,7 +10,6 @@
 #include <unistd.h>
 
 //for using color
-#include <windows.h>
 
 //for using randomnes
 #include <cstdlib>
@@ -75,10 +74,8 @@ a generation, peakAliveCell for knowing the max amount of alive cells and peakGe
 
 
     //for using color, nothing really special again
-    HANDLE h=GetStdHandle(STD_OUTPUT_HANDLE);
 
     //11 means bright cyan, it looks cool
-    SetConsoleTextAttribute(h,11);
 
 
 
@@ -139,7 +136,6 @@ a generation, peakAliveCell for knowing the max amount of alive cells and peakGe
 
     if(randomFirstGeneration == false) {
         while (true) {
-            SetConsoleTextAttribute(h, 11);
             int a, b;
             cout << "type -420 on x value if you are done with marking the alive cells" << endl;
             cout << "type x coordinate of alive cell" << endl;
@@ -150,7 +146,6 @@ a generation, peakAliveCell for knowing the max amount of alive cells and peakGe
             cout << "type y coordinate of alive cell" << endl;
             cin >> b;
             if (a > x || b > x || a < 0 || b < 0) {
-                SetConsoleTextAttribute(h, 4);
                 cout << "your grid doesn't have these coordinates, try again and with caution this time please!"
                      << endl;
                 continue;
@@ -192,12 +187,10 @@ if(randomFirstGeneration == true) {
         {
             if(gridArray[k][i][g]==1)
             {
-                SetConsoleTextAttribute(h,10);
                 cout<<"  "<<gridArray[k][i][g];
             }
             else
             {
-                SetConsoleTextAttribute(h,4);
                 cout<<"  "<<gridArray[k][i][g];
             }
 
@@ -261,7 +254,6 @@ if(randomFirstGeneration == true) {
         g++;
 
 
-        SetConsoleTextAttribute(h,11);
         cout<<"\n"<<"\n";
         cout<<"generation: "<<g<<endl;
 
@@ -306,12 +298,10 @@ if(randomFirstGeneration == true) {
             {
                 if(gridArray[k][i][g]==1)
                 {
-                    SetConsoleTextAttribute(h,10);
                     cout<<"  "<<gridArray[k][i][g];
                 }
                 else
                 {
-                    SetConsoleTextAttribute(h,4);
                     cout<<"  "<<gridArray[k][i][g];
                 }
 
@@ -330,7 +320,6 @@ if(randomFirstGeneration == true) {
         {
             stableCounter=0;
         }
-        SetConsoleTextAttribute(h,11);
         if(stableCounter==15)
         {
             int endOfLine1;
